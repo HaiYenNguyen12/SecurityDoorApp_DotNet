@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "o4bBbinFgMolXCh6+W1ElQVvnYpXX2bpH8DUN1LbhUo=",
+  "Source": "Security-Door-App.Logic",
+  "BasePath": "_content/Security-Door-App.Logic",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\Door-Github\\Security-Door-App\\SecurityDoorApp\\Security-Door-App.Data\\Security-Door-App.Data.csproj",
+      "Version": 2,
+      "Source": "Security-Door-App.Data",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
