@@ -4,6 +4,7 @@ using Security_Door_App.Data.Contexts;
 using Security_Door_App.Data.Models;
 using Security_Door_App.Logic.DTOs;
 using Security_Door_App.Logic.Interface;
+using Security_Door_App.Logic.ViewModels;
 
 namespace Security_Door_App.Logic.Repository
 {
@@ -25,14 +26,19 @@ namespace Security_Door_App.Logic.Repository
             await _context.SaveChangesAsync();
             return 1;
         }
-        public async Task<int> GetDoorReaderBySerialNumber(string serial_number)
+        public async Task<CardReaderVM> GetDoorReaderBySerialNumber(string serial_number)
         {
-            var dr = await _context.doorReaders.FirstOrDefaultAsync(c => c.SerialNumber == serial_number);
+            var dr = await _context.doorReaders.Include(c => c.Door).FirstOrDefaultAsync(c => c.SerialNumber == serial_number);
             if (dr == null)
             {
-                return -1;
+                return default;
             }
-            return dr.Id;
+            return new CardReaderVM
+            {
+                Id = dr.Id,
+                DoorStatus = dr.Door.Status,
+                DoorLevel = dr.Door.Level
+            };
 
         }
     }

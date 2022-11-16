@@ -6,6 +6,6 @@ namespace Security_Door_App.Logic.Interface
     public interface ICard
     {
         Task<int> CreateCardAsync(CreateCardDTO model);
-        Task<int> GetCardByUniqueNumber(string unique_number);
+        Task<CardVM> GetCardByUniqueNumber(string unique_number);
     }
 }

@@ -27,15 +27,19 @@ namespace Security_Door_App.Logic.Repository
             return 1;
         }
 
-        public async Task<int> GetCardByUniqueNumber(string unique_number)
+        public async Task<CardVM> GetCardByUniqueNumber(string unique_number)
         {
           var card =   await _context.Cards.FirstOrDefaultAsync(c => c.UniqueNumber == unique_number);
             if (card == null)
             {
-                return -1;
+                return default;
             }
-            return card.Id;
-
+            return new CardVM
+            {
+                Id = card.Id,
+                CardStatus = card.Status,
+                CardLevel = card.Level,
+            };
         }
     }
 }
