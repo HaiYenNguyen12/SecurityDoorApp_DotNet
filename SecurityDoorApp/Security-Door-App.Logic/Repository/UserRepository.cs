@@ -10,15 +10,18 @@ namespace Security_Door_App.Logic.Repository
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-
+        private readonly SignInManager<User> _signInManager;
         public UserRepository
-        (UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        (UserManager<User> userManager,
+            RoleManager<IdentityRole> roleManager,
+            SignInManager<User> signInManage)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManage;
 
         }
-        public async Task<int> CreateUser(CreateUserDTO model)
+        public async Task<int> CreateAsync(CreateUserDTO model)
         {
             var user = new User
             {
@@ -48,5 +51,31 @@ namespace Security_Door_App.Logic.Repository
             return -1;
             
         }
+
+        public async Task<string> LoginAsync(LoginDTO model)
+        {
+            model = model ?? throw new ArgumentNullException(nameof(model));
+            var signInResult = await _signInManager
+                    .PasswordSignInAsync(
+                        model.Username,
+                        model.Password,
+                        model.RememberMe,
+                        false);
+
+                if (signInResult.Succeeded)
+                {
+                    var user = await _userManager.FindByNameAsync(model.Username);
+                    var isConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+                    if (!isConfirmed)
+                    {
+                        return("Email does not confirm. Happy Login!!!");
+
+                    }
+                        return ("Email confirmed. Shy Login!!!");
+            }
+                return("User login error");
+        }
+
+        
     }
 }
