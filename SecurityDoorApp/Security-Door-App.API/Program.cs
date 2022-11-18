@@ -1,6 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using NETCore.MailKit.Extensions;
+using NETCore.MailKit.Infrastructure.Internal;
+using Security_Door_App.API.Account;
+using Security_Door_App.API.Services;
 using Security_Door_App.Data.Contexts;
 using Security_Door_App.Data.Models;
 using Security_Door_App.Logic.Interface;
@@ -29,15 +33,31 @@ builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(conne
 
 
 builder.Services.AddIdentity<User, IdentityRole>()
-    .AddEntityFrameworkStores<DataContext>();
+    .AddEntityFrameworkStores<DataContext>()
+    .AddDefaultTokenProviders();
 
+//Config MailKit
+var mailKitOptions = builder.Configuration.GetSection("MailSettings").Get<MailKitOptions>();
+builder.Services.AddMailKit(optionBuilder =>
+{
+    optionBuilder.UseMailKit(new MailKitOptions()
+    {
+        Server = mailKitOptions.Server,
+        Port = mailKitOptions.Port,
+        SenderName = mailKitOptions.SenderName,
+        SenderEmail = mailKitOptions.SenderEmail,
+        Account = mailKitOptions.Account,
+        Password = mailKitOptions.Password,
+        Security = true
+    });
+});
 
-builder.Services.AddTransient<IUser, UserRepository>();
 builder.Services.AddTransient<ICard, CardRepository>();
 builder.Services.AddTransient<IDoor, DoorRepository>();
 builder.Services.AddTransient<IDoorReader, DoorReaderRepository>();
 builder.Services.AddTransient<IDoorAction, DoorActionRepository>();
-
+builder.Services.AddTransient<IEmail, EmailService>();
+builder.Services.AddTransient<IUser,UserRepository>();
 builder.Services.AddAutoMapper(
     Assembly.Load("Security-Door-App.Logic"));
 
@@ -54,7 +74,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

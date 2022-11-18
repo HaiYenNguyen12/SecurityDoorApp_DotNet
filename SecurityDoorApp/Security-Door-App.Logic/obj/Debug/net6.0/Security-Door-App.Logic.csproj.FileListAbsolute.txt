@@ -64,3 +64,7 @@ D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.Logic\obj\Deb
 D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.Logic\obj\Debug\net6.0\Security-Door-App.Logic.genruntimeconfig.cache
 D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.Logic\obj\Debug\net6.0\ref\Security-Door-App.Logic.dll
 D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.Logic\bin\Debug\net6.0\AutoMapper.dll
+D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.Logic\bin\Debug\net6.0\MailKit.dll
+D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.Logic\bin\Debug\net6.0\MimeKit.dll
+D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.Logic\bin\Debug\net6.0\NETCore.MailKit.dll
+D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.Logic\bin\Debug\net6.0\BouncyCastle.Crypto.dll

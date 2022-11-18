@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Security_Door_App.API.Account;
 using Security_Door_App.Data.Models;
 using Security_Door_App.Logic.DTOs;
-using Security_Door_App.Logic.Interface;
+
 
 namespace Security_Door_App.API.Controllers
 {
@@ -14,8 +16,7 @@ namespace Security_Door_App.API.Controllers
         private readonly IUser _repo;
      
    
-        public UserController(IUser repo, 
-            UserManager<User> userManager)
+        public UserController(IUser repo)
         {
             _repo = repo;
         }
@@ -26,10 +27,26 @@ namespace Security_Door_App.API.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginDTO model)
+        [HttpPost("login")]
+        public async Task<IActionResult> LoginAsync(LoginDTO model)
         {
             var result = await _repo.LoginAsync(model);
+            return Ok(result);
+        }
+
+
+        [Authorize]
+        //[ValidateAntiForgeryToken]
+        [HttpPost("logout")]
+        public async Task<IActionResult> LogoutAsync()
+        {
+            var result = await _repo.LogOutAsync();
+            return Ok(result);
+        }
+        [HttpGet("confirm")]
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            var result = await _repo.ConfirmEmail(userId,token);
             return Ok(result);
         }
 

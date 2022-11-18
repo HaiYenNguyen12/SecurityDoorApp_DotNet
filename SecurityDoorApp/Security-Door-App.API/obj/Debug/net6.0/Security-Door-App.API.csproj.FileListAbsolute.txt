@@ -75,3 +75,7 @@ D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.API\obj\Debug
 D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.API\obj\Debug\net6.0\ref\Security-Door-App.API.dll
 D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.API\bin\Debug\net6.0\AutoMapper.dll
 D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.API\bin\Debug\net6.0\MailKit.dll
+D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.API\bin\Debug\net6.0\MimeKit.dll
+D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.API\bin\Debug\net6.0\NETCore.MailKit.dll
+D:\Door-Github\Security-Door-App\SecurityDoorApp\Security-Door-App.API\bin\Debug\net6.0\BouncyCastle.Crypto.dll
