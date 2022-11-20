@@ -36,7 +36,6 @@ namespace Security_Door_App.API.Controllers
 
 
         [Authorize]
-        //[ValidateAntiForgeryToken]
         [HttpPost("logout")]
         public async Task<IActionResult> LogoutAsync()
         {

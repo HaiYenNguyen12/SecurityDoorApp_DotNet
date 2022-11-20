@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
 using NETCore.MailKit.Extensions;
 using NETCore.MailKit.Infrastructure.Internal;
@@ -58,6 +59,9 @@ builder.Services.AddTransient<IDoorReader, DoorReaderRepository>();
 builder.Services.AddTransient<IDoorAction, DoorActionRepository>();
 builder.Services.AddTransient<IEmail, EmailService>();
 builder.Services.AddTransient<IUser,UserRepository>();
+builder.Services.AddTransient<ICurrentUser, CurrentUser>();
+builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 builder.Services.AddAutoMapper(
     Assembly.Load("Security-Door-App.Logic"));
 

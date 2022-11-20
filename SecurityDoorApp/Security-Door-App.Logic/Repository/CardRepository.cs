@@ -5,7 +5,6 @@ using Security_Door_App.Data.Models;
 using Security_Door_App.Logic.DTOs;
 using Security_Door_App.Logic.Interface;
 using Security_Door_App.Logic.ViewModels;
-using System.IO.Compression;
 
 namespace Security_Door_App.Logic.Repository
 {
@@ -13,10 +12,12 @@ namespace Security_Door_App.Logic.Repository
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
+        
         public CardRepository(DataContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
+          
         }
 
         public async Task<int> CreateCardAsync(CreateCardDTO model)

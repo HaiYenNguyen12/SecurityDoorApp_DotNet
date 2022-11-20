@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Security_Door_App.API.Services;
+using Security_Door_App.Data.Enums;
 using Security_Door_App.Data.Models;
 using Security_Door_App.Logic.DTOs;
 using Security_Door_App.Logic.Interface;
+using Security_Door_App.Logic.ViewModels;
 using System;
 using System.Data;
 using System.Web;
@@ -16,17 +18,20 @@ namespace Security_Door_App.API.Account
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IEmail _emailService;
+        
 
         public UserRepository
         (UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager,
             SignInManager<User> signInManage,
-            IEmail emailService)
+            IEmail emailService
+            )
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManage;
             _emailService = emailService;
+           
         }
         public async Task<int> CreateAsync(CreateUserDTO model)
         {
@@ -117,5 +122,15 @@ namespace Security_Door_App.API.Account
             return (identityResult.Succeeded);
         }
 
+        public async Task<string> GetRolesByUser(User user)
+        {
+            var roles = await _userManager.GetRolesAsync(user);
+            if (roles.Count == 0) return "employee";
+            return roles[0];
+            
+            
+
+
+        }
     }
 }

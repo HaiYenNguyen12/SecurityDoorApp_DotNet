@@ -11,5 +11,6 @@ namespace Security_Door_App.API.Account
         Task<string> LogOutAsync();
         Task<string> GenerateConfirmationLinkAsync(User user);
         Task<bool> ConfirmEmail(string userId, string token);
+        Task<string> GetRolesByUser(User user);
     }
 }
